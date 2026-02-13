@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Bayu Yuwono (Canva Mockup)</title>
+    <!-- Font Awesome 6 (Ikon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* VARIABEL WARNA */
+        :root {
+            --biru-tua: #0A4B7A;
+            --abu-abu: #6C757D;
+            --putih-gading: #F8F9FA;
+            --putih: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #E5E7E9;
+            font-family: 'Open Sans', sans-serif;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portfolio-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .page {
+            background-color: var(--putih);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px 35px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .page:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(10,75,122,0.1);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--biru-tua);
+        }
+
+        h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--biru-tua);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            color: var(--abu-abu);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* FOTO PROFIL - FIXED */
+        .foto-profil-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(145deg, #0A4B7A, #1A6B9A);
+        }
+
+        .foto-profil {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: none;
+        }
+
+        .foto-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #0A4B7A, #1A6B9A);
+            color: white;
+            font-size: 60px;
+            font-weight: 700;
+        }
+
+        /* UPLOAD SECTION */
+        .upload-section {
+            background-color: var(--putih-gading);
+            border: 2px dashed var(--biru-tua);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0 10px;
+            text-align: center;
+        }
+
+        .upload-label {
+            background-color: var(--biru-tua);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .upload-label:hover {
+            background-color: #0C5A8C;
+            transform: scale(1.05);
+        }
+
+        #file-upload {
+            display: none;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(10,75,122,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .icon-circle i {
+            font-size: 28px;
+            color: var(--biru-tua);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .timeline-year {
+            min-width: 100px;
+            font-weight: 700;
+            color: var(--biru-tua);
+            position: relative;
+        }
+
+        .timeline-year:before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--biru-tua);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #E9ECEF;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--biru-tua), #4A90E2);
+            border-radius: 4px;
+            width: 90%;
+        }
+
+        .table-mockup {
+            background-color: var(--putih-gading);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 14px;
+            border: 1px solid #DEE2E6;
+        }
+
+        .table-mockup table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-mockup th {
+            text-align: left;
+            color: var(--biru-tua);
+            font-weight: 600;
+            padding-bottom: 8px;
+        }
+
+        .table-mockup td {
+            padding: 6px 0;
+            border-bottom: 1px solid #DEE2E6;
+        }
+
+        .folder-tree {
+            font-family: 'Courier New', monospace;
+            background-color: var(--putih-gading);
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .quote-box {
+            background-color: var(--putih-gading);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            font-size: 20px;
+            color: var(--biru-tua);
+            text-align: center;
+            border-left: 5px solid var(--biru-tua);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: '•';
+            color: var(--biru-tua);
+            font-weight: bold;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--abu-abu);
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #DEE2E6;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .page {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+
+        <!-- HALAMAN 1 - COVER dengan FOTO PROFIL -->
+        <div class="page">
+            <div style="text-align: center;">
+                
+                <!-- FOTO PROFIL - LANGSUNG TAMPIL DENGAN INISIAL -->
+                <div class="foto-profil-container">
+                    <!-- Foto akan tampil setelah upload -->
+                    <img id="profil-image" class="foto-profil" src="" alt="Foto Bayu Yuwono">
+                    <!-- Placeholder inisial BY - INI LANGSUNG TAMPIL -->
+                    <div id="fallback-profil" class="foto-placeholder">
+                        BY
+                    </div>
+                </div>
+                
+                <!-- TOMBOL UPLOAD FOTO -->
+                <div class="upload-section">
+                    <p style="margin-bottom: 10px; color: var(--biru-tua);">
+                        <i class="fas fa-cloud-upload-alt"></i> 
+                        <strong>Upload Foto Profil</strong>
+                    </p>
+                    <p style="font-size: 13px; color: var(--abu-abu); margin-bottom: 15px;">
+                        <span id="file-name">Belum ada foto</span>
+                    </p>
+                    <label for="file-upload" class="upload-label">
+                        <i class="fas fa-camera"></i> Pilih Foto (JPG/PNG)
+                    </label>
+                    <input type="file" id="file-upload" accept="image/*">
+                    <p style="font-size: 12px; color: var(--abu-abu); margin-top: 12px;">
+                        <i class="fas fa-info-circle"></i> Klik tombol di atas, lalu pilih foto Anda
+                    </p>
+                </div>
+                
+                <h1>BAYU YUWONO</h1>
+                <div class="subtitle" style="margin-bottom: 30px;">D3 Sistem Informasi • A.Md.Kom</div>
+                
+                <!-- 3 Skill Utama -->
+                <div class="grid-3" style="margin-top: 20px;">
+                    <div>
+                        <div class="icon-circle" style="margin: 0 auto 15px;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Digitalisasi Arsip</h4>
+                    </div>
+                    <div>
+                        <div class="icon-circle" style="margin: 0 auto 15px;">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h4>Inventarisasi TI</h4>
+                    </div>
+                    <div>
+                        <div class="icon-circle" style="margin: 0 auto 15px;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Administrasi Sistem</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPT UPLOAD FOTO - FIX -->
+        <script>
+            document.getElementById('file-upload').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    // Tampilkan nama file
+                    document.getElementById('file-name').textContent = file.name;
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.getElementById('profil-image');
+                        const fallback = document.getElementById('fallback-profil');
+                        
+                        // Tampilkan foto, sembunyikan placeholder
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                        fallback.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Saat halaman dimuat, pastikan placeholder tampil
+            window.onload = function() {
+                const img = document.getElementById('profil-image');
+                const fallback = document.getElementById('fallback-profil');
+                
+                // Sembunyikan gambar, tampilkan placeholder
+                img.style.display = 'none';
+                fallback.style.display = 'flex';
+            };
+        </script>
+
+        <!-- HALAMAN 2 - TENTANG SAYA -->
+        <div class="page">
+            <h2>TENTANG SAYA</h2>
+            <div class="grid-2" style="margin-top: 30px;">
+                <div style="background-color: var(--putih-gading); border-radius: var(--border-radius); padding: 30px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-folder-open" style="font-size: 80px; color: var(--biru-tua); opacity: 0.6;"></i>
+                </div>
+                <div style="background-color: var(--putih-gading); border-radius: var(--border-radius); padding: 25px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background-color: var(--biru-tua); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-graduation-cap" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700;">D3 Sistem Informasi</div>
+                            <div style="color: var(--abu-abu);">IPK 3.45/4.00</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background-color: var(--biru-tua); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-certificate" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700;">BNSP Programmer</div>
+                            <div style="color: var(--abu-abu);">Database Expert IAII</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background-color: var(--biru-tua); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-map-marker-alt" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 700;">Yogyakarta</div>
+                            <div style="color: var(--abu-abu);">Siap bekerja</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-box" style="margin-top: 30px;">
+                "Lulusan D3 Sistem Informasi dengan pengalaman praktis dalam digitalisasi data, inventarisasi TI, dan administrasi sistem. Berkomitmen memberikan kontribusi nyata dalam peran yang membutuhkan ketelitian dan adaptasi."
+            </div>
+        </div>
+
+        <!-- HALAMAN 3 - PENDIDIKAN & SERTIFIKASI -->
+        <div class="page">
+            <h2>PENDIDIKAN & SERTIFIKASI</h2>
+            <div style="margin-top: 30px;">
+                <div class="timeline-item">
+                    <div class="timeline-year">2022-2025</div>
+                    <div class="timeline-content">
+                        <div style="background-color: var(--putih-gading); padding: 20px; border-radius: var(--border-radius);">
+                            <h3 style="margin-bottom: 5px;">D3 SISTEM INFORMASI</h3>
+                            <div style="color: var(--abu-abu); margin-bottom: 10px;">IPK 3.45/4.00</div>
+                            <div>Universitas Bina Sarana Informatika Yogyakarta</div>
+                            <div style="margin-top: 10px; font-size: 14px;">Fokus: Digitalisasi, Analisis Kebutuhan, Manajemen Data</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2016-2019</div>
+                    <div class="timeline-content">
+                        <div style="background-color: var(--putih-gading); padding: 20px; border-radius: var(--border-radius);">
+                            <h3 style="margin-bottom: 5px;">SMA MUHAMMADIYAH 1 KALASAN</h3>
+                            <div style="color: var(--abu-abu);">Jurusan IPS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin: 30px 0 20px;">SERTIFIKASI</h3>
+            <div class="grid-3">
+                <div style="background-color: var(--biru-tua); color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                    <i class="fas fa-code" style="font-size: 36px; margin-bottom: 10px;"></i>
+                    <h4 style="color: white; margin-bottom: 5px;">BNSP</h4>
+                    <div style="font-size: 14px;">Programmer</div>
+                    <div style="margin-top: 10px; font-size: 12px; opacity: 0.9;">2025</div>
+                </div>
+                <div style="background-color: var(--biru-tua); color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                    <i class="fas fa-database" style="font-size: 36px; margin-bottom: 10px;"></i>
+                    <h4 style="color: white; margin-bottom: 5px;">IAII</h4>
+                    <div style="font-size: 14px;">Database Expert</div>
+                    <div style="margin-top: 10px; font-size: 12px; opacity: 0.9;">2023</div>
+                </div>
+                <div style="background-color: var(--biru-tua); color: white; padding: 20px; border-radius: var(--border-radius); text-align: center;">
+                    <i class="fas fa-store" style="font-size: 36px; margin-bottom: 10px;"></i>
+                    <h4 style="color: white; margin-bottom: 5px;">DTS Kominfo</h4>
+                    <div style="font-size: 14px;">Google Bisnis</div>
+                    <div style="margin-top: 10px; font-size: 12px; opacity: 0.9;">2023</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 4 - PENGALAMAN TRANS HOME -->
+        <div class="page">
+            <h2>PENGALAMAN KERJA</h2>
+            <div style="margin-top: 30px;">
+                <div style="display: flex; gap: 20px; align-items: flex-start;">
+                    <div style="min-width: 100px;">
+                        <span style="font-weight: 700; color: var(--biru-tua);">Feb-Jun 2021</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; background-color: rgba(10,75,122,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-warehouse" style="font-size: 24px; color: var(--biru-tua);"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 5px;">STAFF GUDANG</h3>
+                                <div style="color: var(--abu-abu); font-weight: 600;">Trans Home</div>
+                            </div>
+                        </div>
+                        <ul style="margin-bottom: 25px;">
+                            <li>Mengelola stok, penerimaan, dan pengecekan barang dari supplier</li>
+                            <li>Melakukan picking, packing, dan persiapan pengiriman barang</li>
+                            <li>Berkoordinasi dengan tim logistik dan driver</li>
+                            <li>Membuat laporan harian aktivitas gudang</li>
+                        </ul>
+                        <div class="grid-2" style="margin-top: 20px;">
+                            <div style="background-color: var(--putih-gading); padding: 15px; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span style="font-weight: 600;">Laporan Harian</span>
+                                    <i class="fas fa-file-alt" style="color: var(--biru-tua);"></i>
+                                </div>
+                                <div style="height: 60px; display: flex; align-items: flex-end; gap: 8px;">
+                                    <div style="width: 25%; height: 40px; background-color: var(--biru-tua); border-radius: 4px;"></div>
+                                    <div style="width: 25%; height: 55px; background-color: var(--biru-tua); border-radius: 4px;"></div>
+                                    <div style="width: 25%; height: 30px; background-color: var(--biru-tua); border-radius: 4px;"></div>
+                                    <div style="width: 25%; height: 45px; background-color: var(--biru-tua); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <div style="background-color: var(--putih-gading); padding: 15px; border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span style="font-weight: 600;">Stok Masuk</span>
+                                    <i class="fas fa-box" style="color: var(--biru-tua);"></i>
+                                </div>
+                                <div style="font-size: 28px; font-weight: 700; color: var(--biru-tua);">+450</div>
+                                <div style="color: var(--abu-abu); font-size: 14px;">item/bulan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 5 - MAGANG DINAS PARIWISATA -->
+        <div class="page">
+            <h2>PENGALAMAN MAGANG</h2>
+            <div style="margin-top: 30px;">
+                <div style="display: flex; gap: 20px; align-items: flex-start;">
+                    <div style="min-width: 100px;">
+                        <span style="font-weight: 700; color: var(--biru-tua);">Okt-Des 2024</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; background-color: rgba(10,75,122,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-building" style="font-size: 24px; color: var(--biru-tua);"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 5px;">PESERTA MAGANG</h3>
+                                <div style="color: var(--abu-abu); font-weight: 600;">Dinas Pariwisata Kulon Progo</div>
+                            </div>
+                        </div>
+                        <ul style="margin-bottom: 25px;">
+                            <li><strong style="color: var(--biru-tua);">50+</strong> perangkat TI diinventarisasi (komputer, printer, scanner)</li>
+                            <li>Digitalisasi arsip dokumen ke format Excel & PDF</li>
+                            <li>Menyusun dokumentasi harian dan catatan kegiatan</li>
+                            <li>Mendukung koordinasi operasional dinas</li>
+                        </ul>
+                        <h4 style="margin: 20px 0 15px;">DOKUMENTASI DIGITAL</h4>
+                        <div class="grid-2">
+                            <div class="table-mockup">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                    <i class="fas fa-file-excel" style="color: #1D6F42; font-size: 20px;"></i>
+                                    <span style="font-weight: 600;">Inventaris TI.xlsx</span>
+                                </div>
+                                <table>
+                                    <tr><th>No</th><th>Nama Aset</th><th>Status</th></tr>
+                                    <tr><td>1</td><td>Komputer HP</td><td>Baik</td></tr>
+                                    <tr><td>2</td><td>Printer Epson</td><td>Baik</td></tr>
+                                    <tr><td>3</td><td>Scanner Canon</td><td>Rusak</td></tr>
+                                </table>
+                            </div>
+                            <div class="folder-tree">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                    <i class="fas fa-folder" style="color: #FFB74D;"></i>
+                                    <span style="font-weight: 600;">Arsip_2024</span>
+                                </div>
+                                <div style="margin-left: 20px;">
+                                    📁 Surat Masuk<br>
+                                    &nbsp;&nbsp; 📄 SK_001.pdf<br>
+                                    &nbsp;&nbsp; 📄 SK_002.pdf<br>
+                                    📁 Inventaris<br>
+                                    &nbsp;&nbsp; 📄 IT_Aset.xlsx
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 6 - KEAHLIAN -->
+        <div class="page">
+            <h2>KEAHLIAN</h2>
+            <div class="grid-3" style="margin-top: 30px;">
+                <div style="background-color: var(--putih-gading); border-radius: var(--border-radius); padding: 25px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <div style="width: 45px; height: 45px; background-color: var(--biru-tua); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-cog" style="color: white; font-size: 22px;"></i>
+                        </div>
+                        <h3 style="margin-bottom: 0;">TEKNIS</h3>
+                    </div>
+                    <ul style="list-style: none;">
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Manajemen Dokumen Digital</li>
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Inventarisasi Aset TI</li>
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Analisis Kebutuhan Sistem</li>
+                        <li style="padding-left: 0;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Administrasi Database</li>
+                    </ul>
+                </div>
+                <div style="background-color: var(--putih-gading); border-radius: var(--border-radius); padding: 25px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <div style="width: 45px; height: 45px; background-color: var(--biru-tua); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-laptop" style="color: white; font-size: 22px;"></i>
+                        </div>
+                        <h3 style="margin-bottom: 0;">PERANGKAT LUNAK</h3>
+                    </div>
+                    <ul style="list-style: none;">
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> MS Office (Excel, Word, PPT)</li>
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Canva, Figma</li>
+                        <li style="padding-left: 0; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> PDF Tools, Scanner</li>
+                        <li style="padding-left: 0;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Spreadsheet Lanjutan</li>
+                    </ul>
+                </div>
+                <div style="background-color: var(--putih-gading); border-radius: var(--border-radius); padding: 25px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <div style="width: 45px; height: 45px; background-color: var(--biru-tua); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-users" style="color: white; font-size: 22px;"></i>
+                        </div>
+                        <h3 style="margin-bottom: 0;">SOFT SKILL</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Komunikasi Efektif</span><span>90%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Kerja Sama Tim</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Ketelitian</span><span>95%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Inisiatif</span><span>88%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-label"><span>Adaptasi Cepat</span><span>92%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 7 - STUDI KASUS -->
+        <div class="page">
+            <h2>STUDI KASUS</h2>
+            <h3 style="color: var(--biru-tua); margin-bottom: 25px;">PROYEK DIGITALISASI ARSIP</h3>
+            <h4 style="color: var(--abu-abu); margin-bottom: 30px;">Dinas Pariwisata Kulon Progo</h4>
+            <div class="grid-3" style="gap: 25px;">
+                <div style="background-color: #FFF4E5; border-radius: var(--border-radius); padding: 25px; border-left: 5px solid #FF9800;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <i class="fas fa-exclamation-triangle" style="color: #FF9800; font-size: 28px;"></i>
+                        <h4 style="margin-bottom: 0; color: #E65100;">MASALAH</h4>
+                    </div>
+                    <ul style="list-style: none;">
+                        <li style="padding-left: 0;"><i class="fas fa-times-circle" style="color: #FF9800; margin-right: 10px;"></i> Dokumen menumpuk fisik</li>
+                        <li style="padding-left: 0;"><i class="fas fa-times-circle" style="color: #FF9800; margin-right: 10px;"></i> Sulit mencari data lama</li>
+                        <li style="padding-left: 0;"><i class="fas fa-times-circle" style="color: #FF9800; margin-right: 10px;"></i> Resiko kerusakan/kehilangan</li>
+                    </ul>
+                </div>
+                <div style="background-color: #E3F2FD; border-radius: var(--border-radius); padding: 25px; border-left: 5px solid var(--biru-tua);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <i class="fas fa-lightbulb" style="color: var(--biru-tua); font-size: 28px;"></i>
+                        <h4 style="margin-bottom: 0; color: var(--biru-tua);">SOLUSI</h4>
+                    </div>
+                    <ul style="list-style: none;">
+                        <li style="padding-left: 0;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Scan & konversi ke PDF</li>
+                        <li style="padding-left: 0;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Input metadata ke Excel</li>
+                        <li style="padding-left: 0;"><i class="fas fa-check-circle" style="color: var(--biru-tua); margin-right: 10px;"></i> Struktur folder sistematis</li>
+                    </ul>
+                </div>
+                <div style="background-color: #E8F5E9; border-radius: var(--border-radius); padding: 25px; border-left: 5px solid #2E7D32;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <i class="fas fa-check-circle" style="color: #2E7D32; font-size: 28px;"></i>
+                        <h4 style="margin-bottom: 0; color: #1B5E20;">HASIL</h4>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 36px; font-weight: 800; color: #2E7D32;">200+</span>
+                        <span style="color: var(--abu-abu);"> file terdigitalisasi</span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <span style="font-weight: 700;">✓ Waktu pencarian 80% lebih cepat</span>
+                    </div>
+                    <div><span style="font-weight: 700;">✓ Akses data kapan saja</span></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- HALAMAN 9 - PENUTUP -->
+        <div class="page" style="text-align: center;">
+            <div style="padding: 30px 0;">
+                <h2 style="display: block; text-align: center; margin-bottom: 30px;">SIAP BERKONTRIBUSI</h2>
+                <div class="quote-box" style="margin: 30px 0; font-size: 24px; border-left: none; border-top: 5px solid var(--biru-tua);">
+                    "Memberikan solusi digital dan administratif<br>yang tepat guna bagi tim dan organisasi"
+                </div>
+                <div class="grid-3" style="max-width: 500px; margin: 40px auto;">
+                    <div>
+                        <div style="width: 60px; height: 60px; background-color: rgba(10,75,122,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-envelope" style="font-size: 28px; color: var(--biru-tua);"></i>
+                        </div>
+                        <div style="font-weight: 600;">Email</div>
+                        <div style="color: var(--abu-abu); font-size: 14px;">bayuyuwono86@email.com</div>
+                    </div>
+                    <div>
+                        <div style="width: 60px; height: 60px; background-color: rgba(10,75,122,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fab fa-linkedin-in" style="font-size: 28px; color: var(--biru-tua);"></i>
+                        </div>
+                        <div style="font-weight: 600;">LinkedIn</div>
+                        <div style="color: var(--abu-abu); font-size: 14px;">/in/bayu-yuwono</div>
+                    </div>
+                    <div>
+                        <div style="width: 60px; height: 60px; background-color: rgba(10,75,122,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-link" style="font-size: 28px; color: var(--biru-tua);"></i>
+                        </div>
+                        <div style="font-weight: 600;">Portofolio</div>
+                        <div style="color: var(--abu-abu); font-size: 14px;">canva.com/bayu</div>
+                    </div>
+                </div>
+                <div style="margin: 40px 0 20px;">
+                    <h3 style="color: var(--biru-tua);">BAYU YUWONO</h3>
+                    <div style="color: var(--abu-abu);">A.Md.Kom</div>
+                </div>
+                <div class="footer">© 2026 - Portofolio Canva Mockup</div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px; color: var(--abu-abu); font-size: 12px;">
+        ⚡ Klik tombol "Pilih Foto" untuk upload foto profil Anda
+    </div>
+</body>
+</html>
